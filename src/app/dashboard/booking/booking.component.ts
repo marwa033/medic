@@ -28,6 +28,7 @@ export class BookingComponent implements OnInit {
   day: any;
   selectedID: any;
   vendorID: any;
+  selectedDoctor: any;
   doctors: any;
   constructor(public translate: TranslateService,
     public authService: AuthService,

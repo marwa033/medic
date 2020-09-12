@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import * as io from 'socket.io-client';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-const baseURL = 'https://node-doctors.herokuapp.com/api/';
+const baseURL = 'http://157.230.20.69:8080/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -84,7 +84,7 @@ export class AuthService {
 
  // EMITTER
  sendMessage(msg: string , val , name , Id , time) {
-  this.socket = io('https://node-doctors.herokuapp.com/');
+  this.socket = io('http://157.230.20.69:8080/');
   this.socket.emit('newMessage', {groupId: val , text: msg , userName: name ,userId:Id , dateTime: time});
   console.log(this.socket)
 
@@ -92,7 +92,7 @@ export class AuthService {
 
 // HANDLER
 onNewMessage(val) {
-  this.socket = io('https://node-doctors.herokuapp.com/');
+  this.socket = io('http://157.230.20.69:8080/');
   return Observable.create(observer => {
     this.socket.on('newMessage/'+ val , msg => {
       observer.next(msg);
@@ -103,7 +103,7 @@ onNewMessage(val) {
 
 // HANDLER
 NewMessage(id) {
-  this.socket = io('https://node-doctors.herokuapp.com/');
+  this.socket = io('http://157.230.20.69:8080/');
   return Observable.create(observer => {
     this.socket.on('newMessage/'+ id , msg => {
       observer.next(msg);

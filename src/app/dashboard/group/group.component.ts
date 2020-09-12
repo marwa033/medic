@@ -22,9 +22,11 @@ export class GroupComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   results: any;
+  id : any = [];
   tries: any;
   delete: any;
   name: any;
+  new : Boolean = false 
  
   constructor(public translate: TranslateService,
     public authService: AuthService,
@@ -45,24 +47,23 @@ export class GroupComponent implements OnInit {
                    this.dataSource = new MatTableDataSource(getGroupResults);
                    this.dataSource.paginator = this.paginator;
                    this.dataSource.sort = this.sort;
-                   console.log(this.results)
-                  //  this.results.forEach(item => {
-                  //    let id = item._id
-                  //    console.log(id)
-                  //    this.authService.NewMessage(id).subscribe(msg => {
-                  //     console.log('got a msg: ' + msg);
-                  //     if(item._id == id){
-                  //       this.name = item.user.name
-                  //       console.log(this.name)
-                  //     }
-                  //     location.reload()
-                  //   });
-                  // }); 
                    setTimeout(() => {
                     this.spinner.hide();
                   }, this.results);
+                  console.log(this.results)
+
+                  this.results.forEach(element => {
+                    let id =element._id
+                    this.authService.NewMessage(id).subscribe(msg => {
+                      location.reload();
+                      this.new = true
+                    });
+                  });
+
                 });
                }
+
+
                Close(){ 
                 this.modalService.dismissAll(); 
                 this.spinner.show();
@@ -86,11 +87,10 @@ export class GroupComponent implements OnInit {
                }
                
   ngOnInit() {
-    for(let i=0; i<= this.results ; i++){
-      console.log(i)
-    }
     this.spinner.show();
     this.Group();
+    // for(let i=0; i>= this.results ; i++){
+    // }
   }
 
 }

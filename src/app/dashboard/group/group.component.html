@@ -40,7 +40,7 @@
                     <mat-icon style="color:#19a994" class="pointer" title="open chat" (click)="Chat(element)">                      
                     <a [routerLink]="['/dashboard/message/' + element._id +'/'+ element.user.name]">chat
                     </a></mat-icon> 
-                  
+                    <mat-icon style="color:maroon" *ngIf="new == true" title="new message" >plus_one</mat-icon>                  
               </td>
               </ng-container>
               <ng-container matColumnDef="any">
