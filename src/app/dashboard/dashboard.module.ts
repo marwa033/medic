@@ -1,7 +1,8 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { MatIconModule,
+import {MatIconModule} from '@angular/material/icon';
+import {
 			MatButtonModule,
 			MatTabsModule,
 			MatCardModule,
